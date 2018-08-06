@@ -19,9 +19,8 @@
 <input type="text" class="form-control" id ="uName" name="uName" placeholder="Enter the user name">
 </div>
 <div class="form-group">
-      <label for="uGender">Gender:</label>
-      <input type="radio" class="form-control" id="uGender" name="Male">
-      <input type="radio" class="form-control" id="uGender" name="Female">  
+<label for="uGender">User Name:</label>
+<input type="text" class="form-control" id ="uGender" name="uGender" placeholder="Enter the Gender">
 </div>
 <div class="form-group">
 <label for="uEmail">User EmailID:</label>

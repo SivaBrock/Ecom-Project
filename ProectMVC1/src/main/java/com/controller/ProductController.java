@@ -1,15 +1,21 @@
 package com.controller;
 
+import java.security.Principal;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.model.Product;
 import com.model.ProductDAO;
 import com.model.User;
 import com.model.UserDAO;
+
+
 
 @Controller
 public class ProductController {
@@ -49,10 +55,31 @@ public class ProductController {
 		pd.insertproduct(Product);
 		return mv;
 	}
+	
 	@RequestMapping(value="/Laptop",method=RequestMethod.GET)
 	public ModelAndView laptop() {
 		ModelAndView lp = new ModelAndView("Laptop"); 
 		return lp;
 	}
+	
+	@RequestMapping(value="/getproducts", method = RequestMethod.GET)
+	public ModelAndView getProductList(Principal P) {
+		
+		ProductDAO pd = new ProductDAO();
+		List<Product> al = pd.getProducts();
+		ModelAndView mv = new ModelAndView("listproducts");
+		mv.addObject("lp",al);
+	//	mv.addObject("un",P.getName());
+		return mv;		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/getjsonproducts", method=RequestMethod.POST)
+	public List<Product> getJsonProductList(){
+		ProductDAO pd = new ProductDAO();
+		List<Product> al = pd.getProducts();
+		return al;
+	}
+
 
 }
